@@ -24,7 +24,23 @@ public class StringCalculator {
 
     private int sum(String[] stringNumbers) {
         return Arrays.stream(stringNumbers)
-                .mapToInt(Integer::parseInt)
+                .mapToInt(this::parseAndValidateNumber)
                 .sum();
+    }
+
+    private int parseAndValidateNumber(String stringNumber) {
+        try {
+            int number = Integer.parseInt(stringNumber);
+            validateNonNegative(number);
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력값에 문자가 포함됨.");
+        }
+    }
+
+    private void validateNonNegative(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("음수는 입력할 수 없음.");
+        }
     }
 }

@@ -6,11 +6,15 @@ import calculator.view.OutputView;
 
 public class CalculatorController {
     public void run() {
-        String input = InputView.readInput();
+        try {
+            String input = InputView.readInput();
 
-        StringCalculator calculator = new StringCalculator();
-        int result = calculator.add(input);
+            StringCalculator calculator = new StringCalculator();
+            int result = calculator.add(input);
 
-        OutputView.print(result);
+            OutputView.print(result);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
