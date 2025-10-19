@@ -1,6 +1,7 @@
 package calculator.domain;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
 
@@ -17,7 +18,8 @@ public class StringCalculator {
             int separatorIndex = input.indexOf("\n");
             String customDelimiter = input.substring(2, separatorIndex);
             String numberString = input.substring(separatorIndex + 1);
-            return numberString.split(customDelimiter);
+
+            return numberString.split(Pattern.quote(customDelimiter));
         }
         return input.split("[,:]");
     }
@@ -30,7 +32,7 @@ public class StringCalculator {
 
     private int parseAndValidateNumber(String stringNumber) {
         try {
-            int number = Integer.parseInt(stringNumber);
+            int number = Integer.parseInt(stringNumber.trim());
             validateNonNegative(number);
             return number;
         } catch (NumberFormatException e) {
