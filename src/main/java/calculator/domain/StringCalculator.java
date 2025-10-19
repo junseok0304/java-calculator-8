@@ -13,6 +13,12 @@ public class StringCalculator {
     }
 
     private String[] split(String input) {
+        if (input.startsWith("//") && input.contains("\n")){
+            int separatorIndex = input.indexOf("\n");
+            String customDelimiter = input.substring(2, separatorIndex);
+            String numberString = input.substring(separatorIndex + 1);
+            return numberString.split(customDelimiter);
+        }
         return input.split("[,:]");
     }
 
