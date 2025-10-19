@@ -6,11 +6,17 @@ import calculator.view.OutputView;
 
 public class CalculatorController {
     public void run() {
-            String input = InputView.readInput();
+        String input = InputView.readInput();
 
-            StringCalculator calculator = new StringCalculator();
-            int result = calculator.add(input);
+        input = input.replace("\\n", "\n");
 
-            OutputView.print(result);
+        if (input.startsWith("//") && !input.contains("\n")) {
+            String second = InputView.readNextLine();
+            input = input + "\n" + second;
+        }
+
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add(input);
+        OutputView.print(result);
     }
 }

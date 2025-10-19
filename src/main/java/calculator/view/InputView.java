@@ -9,4 +9,8 @@ public class InputView {
         System.out.println(START_MESSAGE);
         return readLine();
     }
+
+    public static String readNextLine() {
+        return readLine();
+    }
 }
